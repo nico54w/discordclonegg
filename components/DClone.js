@@ -3,15 +3,15 @@ import { useEffect, useState } from 'react';
 import GDC from '../scripts/GDC'
 
 export default function DClone(){
-    const [idd, setIdd] = useState(0);
+    const [idd, setIdd] = useState(null);
     useEffect(() => {
         GDC.getId(setIdd);
-    }, [idd])
+    }, [])
     function host(){
-
+        GDC.host()
     }
     function join(){
-
+        GDC.join()
     }
     return (
         <div>
@@ -20,6 +20,8 @@ export default function DClone(){
             <div onClick={join}>join</div>
             <hr></hr>
             <div>{idd}</div>
+            <hr></hr>
+            <video id="VIDEOSPLUS"></video>
         </div>
     )
 }

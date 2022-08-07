@@ -3,33 +3,50 @@ import { Peer } from 'peerjs';
 
 class GDC {
     constructor() {
-        this._peer = new Peer({ key: 'sad' });
+        this._peer = new Peer();
     }
-    getId(fn){
+    getId(fn) {
         console.log(this._peer.id)
-        if(this._peer.id == null){
+        if (this._peer.id == null) {
             this._peer.on('open', id => {
                 console.log(id);
                 fn(id);
             });
-        }else{
+        } else {
             fn(this._peer.id);
         }
     }
-    host(){
-        _peer.on('connection', dataConnection => {
-            dataConnection.send('HOLAS');
-            dataConnection.on('data', data => {
-                console.log(data);
+    host() {
+        this._peer.on('call', mediaConnection => {
+            navigator.mediaDevices.getUserMedia({audio: true, video:true}).then((stream) => {
+                mediaConnection.answer(stream);
+            }).catch(err => console.log(err));
+        });
+        // this._peer.on('connection', dataConnection => {
+        //     dataConnection.on('open', function () {
+        //         dataConnection.on('data', data => {
+        //             console.log(data);
+        //         });
+        //         dataConnection.send('HOLAS');
+        //     });
+        // });
+    }
+    join() {
+        const id = prompt("id");
+        navigator.mediaDevices.getUserMedia({audio: true, video:true}).then((stream) => {
+            var call = this._peer.call(id, stream);
+            call.on('stream', (streamData) => {
+                const v = document.getElementById("VIDEOSPLUS");
+                v.src = streamData;
             });
         });
-    }
-    join(){
-        const id = prompt("id");
-        const dataConnect = _peer.connect(id);
-        dataConnect.on('data', data => {
-            console.log(data)
-        })
+        // const dataConnect = this._peer.connect(id);
+        // dataConnect.on('open', function(){
+        //     // dataConnect.on('data', data => {
+        //     //     // console.log(data)
+        //     //     // dataConnect.send("wet")
+        //     // });
+        // });
     }
 }
 export default new GDC();
