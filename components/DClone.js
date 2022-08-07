@@ -1,27 +1,55 @@
 import { useEffect, useState } from 'react';
-import GDC from '../scripts/GDC';
 
-export default function Sadd() {
+import GDC from '../scripts/GDC'
 
-    function hostCall() {
-        GDC.host();
+export default function DClone(){
+    const [idd, setIdd] = useState(0);
+    useEffect(() => {
+        GDC.getId(setIdd);
+    }, [idd])
+    function host(){
+
     }
-    function joinCall() {
-        let id = prompt("INSERT ID");
-        GDC.connect_to(id);
+    function join(){
+
     }
-    const [desp, setDesp] = useState(0);
-    function ret(id) {
-        setDesp(id)
-    }
-    GDC.get_id(ret);
-    return (<div>
-        <div style={{ marginLeft: "auto", marginRight: "auto" }}>
-            <div className='hover_item' style={{ margin: "10px", border: "10px dotted white", textAlign: "center" }} onClick={hostCall}>HOST CONFERENCE</div>
-            <div style={{ margin: "30px" }}></div>
-            <div className='hover_item' style={{ margin: "10px", border: "10px dotted white", textAlign: "center" }} onClick={joinCall}>JOIN CONFERENCE</div>
+    return (
+        <div>
+            <div onClick={host}>HOST</div>
+            <hr></hr>
+            <div onClick={join}>join</div>
+            <hr></hr>
+            <div>{idd}</div>
         </div>
-        <audio controls src='duki.mp3' id="TRISTE"></audio>
-        {desp}
-    </div>)
+    )
 }
+
+
+
+// import { useEffect, useState } from 'react';
+// import GDC from '../scripts/GDC';
+
+// export default function Sadd() {
+
+//     function hostCall() {
+//         GDC.host();
+//     }
+//     function joinCall() {
+//         let id = prompt("INSERT ID");
+//         GDC.connect_to(id);
+//     }
+//     const [desp, setDesp] = useState(0);
+//     function ret(id) {
+//         setDesp(id)
+//     }
+//     GDC.get_id(ret);
+//     return (<div>
+//         <div style={{ marginLeft: "auto", marginRight: "auto" }}>
+//             <div className='hover_item' style={{ margin: "10px", border: "10px dotted white", textAlign: "center" }} onClick={hostCall}>HOST CONFERENCE</div>
+//             <div style={{ margin: "30px" }}></div>
+//             <div className='hover_item' style={{ margin: "10px", border: "10px dotted white", textAlign: "center" }} onClick={joinCall}>JOIN CONFERENCE</div>
+//         </div>
+//         <audio controls src='duki.mp3' id="TRISTE"></audio>
+//         {desp}
+//     </div>)
+// }
