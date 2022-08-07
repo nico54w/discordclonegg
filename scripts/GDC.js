@@ -16,12 +16,14 @@ class GDC {
             fn(this._peer.id);
         }
     }
-    host(source) {
+    host() {
         this._peer.on('call', mediaConnection => {
             navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then((stream) => {
                 mediaConnection.answer(stream);
                 mediaConnection.on('stream', streamData => {
-                    source(streamData);
+                    var video = document.getElementById('VIDEOSPLUS');
+                    video.srcObject = streamData;
+                    video.play();
                 });
             }).catch(err => console.log(err));
         });
@@ -34,12 +36,14 @@ class GDC {
         //     });
         // });
     }
-    join(source) {
+    join() {
         const id = prompt("id");
         navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then((stream) => {
             var call = this._peer.call(id, stream);
             call.on('stream', (streamData) => {
-                source(streamData);
+                var video = document.getElementById('VIDEOSPLUS');
+                video.srcObject = streamData;
+                video.play();
             });
         });
         // const dataConnect = this._peer.connect(id);

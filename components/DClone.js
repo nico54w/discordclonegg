@@ -4,15 +4,14 @@ import GDC from '../scripts/GDC'
 
 export default function DClone(){
     const [idd, setIdd] = useState(null);
-    const [source, setSource] = useState(null);
     useEffect(() => {
         GDC.getId(setIdd);
     }, []);
     function host(){
-        GDC.host(setSource);
+        GDC.host();
     }
     function join(){
-        GDC.join(setSource);
+        GDC.join();
     }
     return (
         <div>
