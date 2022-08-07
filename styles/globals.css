@@ -24,3 +24,10 @@ a {
     background: black;
   }
 }
+
+.hover_item:hover{
+  cursor: pointer;
+}
+.hover_item{
+  cursor: default;
+}
