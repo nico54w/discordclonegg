@@ -4,7 +4,7 @@ import GDC from '../scripts/GDC'
 
 export default function DClone(){
     const [idd, setIdd] = useState(null);
-    const [source, setSource] = userState(null);
+    const [source, setSource] = useState(null);
     useEffect(() => {
         GDC.getId(setIdd);
     }, []);
