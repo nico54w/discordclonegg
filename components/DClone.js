@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import GDC from '../scripts/GDC';
 
-export default function () {
+export default function sadd() {
 
     function hostCall() {
         GDC.host();
