@@ -4,14 +4,15 @@ import GDC from '../scripts/GDC'
 
 export default function DClone(){
     const [idd, setIdd] = useState(null);
+    const [source, setSource] = userState(null);
     useEffect(() => {
         GDC.getId(setIdd);
-    }, [])
+    }, []);
     function host(){
-        GDC.host()
+        GDC.host(setSource);
     }
     function join(){
-        GDC.join()
+        GDC.join(setSource);
     }
     return (
         <div>
@@ -21,7 +22,9 @@ export default function DClone(){
             <hr></hr>
             <div>{idd}</div>
             <hr></hr>
-            <video id="VIDEOSPLUS"></video>
+            <video id="VIDEOSPLUS" autoPlay={true} loop playsInline>
+                <source src={source}></source>
+            </video>
         </div>
     )
 }
