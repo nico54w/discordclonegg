@@ -21,8 +21,7 @@ export default function DClone(){
             <hr></hr>
             <div>{idd}</div>
             <hr></hr>
-            <video id="VIDEOSPLUS" autoPlay={true} loop playsInline>
-                <source src={source}></source>
+            <video id="VIDEOSPLUS">
             </video>
         </div>
     )
